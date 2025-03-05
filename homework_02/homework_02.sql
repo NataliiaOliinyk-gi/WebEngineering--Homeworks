@@ -8,7 +8,10 @@ FROM
 	suppliers;
 
 -- 2. Выведите столбцы id, order_id из таблицы order_details, а также вычисляемый столбец category в зависимости от значений unit_price 
--- Если unit_price > 10 то значение столбца  category 'Expensive' В противном случае 'Cheap' Написать запрос двумя способами -  с применением операторов IF и CASE
+-- Если unit_price > 10 то значение столбца  category 'Expensive' В противном случае 'Cheap' Написать запрос двумя способами -  
+-- с применением операторов IF и CASE
+
+-- 1 способ с применением оператора CASE:
 
 SELECT 
 	id,
@@ -18,6 +21,15 @@ SELECT
         ELSE 'Cheap'
     END AS category
 FROM 
+	order_details;
+    
+-- 2 способ с применением оператора IF:
+
+SELECT 
+	id,
+   order_id,
+    IF (unit_price > 10, 'Expensive', 'Cheap') AS category
+FROM
 	order_details;
 
 -- 3. Вывести все строки там, где purchase_order_id не указано. При этом дополнительно создать столбец total_price как произведение quantity * unit_price
