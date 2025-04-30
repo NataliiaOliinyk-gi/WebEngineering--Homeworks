@@ -1,0 +1,41 @@
+[
+  {
+    $match:
+      /**
+       * query: The query in MQL.
+       */
+      {
+        Album_type: {
+          $ne: "compilation"
+        }
+      }
+  },
+  {
+    $sort:
+      /**
+       * Provide any number of field/order pairs.
+       */
+      {
+        Duration_ms: -1
+      }
+  },
+  {
+    $limit:
+      /**
+       * Provide the number of documents to limit.
+       */
+      1
+  },
+  {
+    $project:
+      /**
+       * specifications: The fields to
+       *   include or exclude.
+       */
+      {
+        _id: 0,
+        Track: 1,
+        Duration_ms: 1
+      }
+  }
+]
