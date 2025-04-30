@@ -1,0 +1,5 @@
+[{
+  "average_price": {
+    "$numberDecimal": "247.17"
+  }
+}]

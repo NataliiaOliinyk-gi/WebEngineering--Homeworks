@@ -1,0 +1,39 @@
+[
+  {
+    $match:
+      /**
+       * query: The query in MQL.
+       */
+      {
+        "address.market": {
+          $in: ["Oahu", "Maui", "Kauai", "Hawaii"]
+        }
+      }
+  },
+  {
+    $group:
+      /**
+       * _id: The id of the group.
+       * fieldN: The first field name.
+       */
+      {
+        _id: null,
+        average_price: {
+          $avg: "$price"
+        }
+      }
+  },
+  {
+    $project:
+      /**
+       * specifications: The fields to
+       *   include or exclude.
+       */
+      {
+        _id: 0,
+        average_price: {
+          $round: ["$average_price", 2]
+        }
+      }
+  }
+]
