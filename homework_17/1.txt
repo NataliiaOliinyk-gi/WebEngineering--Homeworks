@@ -1,0 +1,24 @@
+[
+  {
+    $match:
+      /**
+       * query: The query in MQL.
+       */
+      {
+        "location.address.state": "CA"
+      }
+  },
+  {
+    $group:
+      /**
+       * _id: The id of the group.
+       * fieldN: The first field name.
+       */
+      {
+        _id: null,
+        totalCount: {
+          $sum: 1
+        }
+      }
+  }
+]
